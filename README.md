@@ -1,9 +1,22 @@
 # OpsCS — AI Travel Operations OS
 
-> **B2B 호텔/여행 운영 조직을 위한 AI 운영 플랫폼 프로토타입**
+> **B2B 호텔/여행 운영 조직을 위한 AI 운영 플랫폼**
 > 호텔 부킹 CS · 공급선 추격 · 빌링 · 수금 · 미수 관리 · 신용 통제 · SOP 기반 에스컬레이션
 
-본 저장소는 [PRD v1.0](#) 의 핵심 화면을 Next.js 14 + TypeScript + TailwindCSS 로 구현한 **클릭 가능한 프로토타입**입니다. 디자인 파트너 인터뷰 및 데모용으로 사용됩니다.
+본 저장소는 PRD + 기술 명세 + 클릭 가능한 프로토타입 (Next.js) 의 단일 출처입니다.
+
+**🌐 Live Demo**: https://bstars00-rgb.github.io/ops-cs/
+
+## 📚 문서 (docs/)
+
+| 파일 | 내용 | 분량 |
+|---|---|---|
+| [`docs/PRD.md`](./docs/PRD.md) | **통합 PRD** — 30 sections (Page 1~8 압축본) | ~15K 단어 |
+| [`docs/SPECIFICATION.md`](./docs/SPECIFICATION.md) | **기술 명세** — 50+ DB 테이블, 18 API 그룹, 21 AI 에이전트, 16 SOP, 보안 정책 | ~12K 단어 |
+| [`docs/ROADMAP.md`](./docs/ROADMAP.md) | **로드맵** — Phase 0 검증 → Phase 1 MVP → Phase 2~4 expand (24개월) | ~3K 단어 |
+| [`docs/CHANGELOG.md`](./docs/CHANGELOG.md) | **세션 이력** — 작업 누적 + 점수 평가 | ~2K 단어 |
+
+**처음 보시는 분은 `docs/PRD.md` 부터** 읽으세요. 빌드 시작은 `docs/SPECIFICATION.md` + `docs/ROADMAP.md` 의 12주 계획 기반.
 
 ---
 
