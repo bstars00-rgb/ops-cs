@@ -67,34 +67,70 @@ npm run build
 
 ---
 
-## ☁️ Vercel 배포 (권장)
+## ☁️ 배포 — GitHub Pages (권장, 100% GitHub 안에서)
 
-가장 쉬운 배포 경로 — **GitHub → Vercel 자동 배포**:
+본 저장소는 **GitHub Actions 가 자동으로 GitHub Pages 에 배포** 합니다. 외부 서비스 가입 불필요.
 
 ### 1단계: GitHub 푸시
 
 ```bash
-git init
-git add .
-git commit -m "feat: initial OpsCS prototype"
-git branch -M main
-git remote add origin https://github.com/bstars00-rgb/ops-cs.git
 git push -u origin main
 ```
 
-### 2단계: Vercel 연결
+(저장소가 아직 없다면 GitHub 에서 먼저 `bstars00-rgb/ops-cs` 빈 저장소 생성)
 
-1. [vercel.com/new](https://vercel.com/new) 에서 GitHub 저장소 import
-2. **Framework Preset**: Next.js (자동 인식)
-3. **Build Command**: `npm run build` (기본값)
-4. **Output Directory**: `.next` (기본값)
-5. Deploy 클릭 → 약 2분 후 배포 완료
+### 2단계: GitHub Pages 활성화 (최초 1회)
 
-이후 `main` 브랜치에 push 할 때마다 자동 배포됩니다.
+1. GitHub 저장소 → **Settings** 탭
+2. 좌측 **Pages** 메뉴
+3. **Build and deployment** > **Source** → `GitHub Actions` 선택
+4. 저장 (자동 저장)
 
-### 3단계: 커스텀 도메인 (선택)
+### 3단계: 자동 배포 확인
 
-Vercel 대시보드 → Project Settings → Domains 에서 추가.
+`main` 브랜치에 push 하면 `.github/workflows/deploy.yml` 가 트리거되어:
+
+1. Node 20 설치 → `npm ci` → `npm run build` (정적 export)
+2. `out/` 디렉토리를 GitHub Pages 에 업로드
+3. 약 1~2분 후 배포 완료
+
+배포 URL: **`https://bstars00-rgb.github.io/ops-cs/`**
+
+진행 상황: 저장소 → **Actions** 탭에서 실시간 확인.
+
+이후 `git push main` 할 때마다 자동 재배포 됩니다.
+
+### 작동 원리
+
+- `next.config.js` 에서 `GITHUB_PAGES=true` 환경변수 감지 시 `output: "export"` + `basePath: "/ops-cs"` 자동 설정
+- `/cases/[id]` 동적 라우트는 `generateStaticParams` 로 모든 케이스 ID 가 prerender 됨
+- `.nojekyll` 파일을 추가해 Next.js 의 `_next/` 디렉토리가 정상 서빙되도록 처리
+- 로컬 개발은 그대로 `npm run dev` (basePath 없이 `localhost:3000`)
+
+---
+
+## 🔄 대안 1: Vercel (1-click)
+
+GitHub Pages 대신 Vercel 을 쓰고 싶다면:
+
+1. [vercel.com/new](https://vercel.com/new) 에서 저장소 import
+2. Framework: **Next.js** 자동 감지
+3. **중요**: Environment Variables 섹션에서 `GITHUB_PAGES` 는 **설정하지 마세요** (Vercel 은 SSR 모드로 빌드)
+4. Deploy 클릭 → 약 2분 후 `*.vercel.app` URL
+
+장점: PR 별 자동 미리보기 URL, edge network 무료.
+
+---
+
+## 🔄 대안 2: Cloudflare Pages
+
+1. [pages.cloudflare.com](https://pages.cloudflare.com) → Create project → GitHub 연결
+2. Framework: **Next.js (Static HTML Export)**
+3. Build command: `GITHUB_PAGES=true npm run build`
+4. Output directory: `out`
+5. Environment Variables: `GITHUB_PAGES=true`
+
+장점: 더 빠른 글로벌 CDN, 무제한 트래픽.
 
 ---
 

@@ -25,6 +25,10 @@ import {
   ChevronRight,
 } from "lucide-react";
 
+export function generateStaticParams() {
+  return cases.map((c) => ({ id: c.id }));
+}
+
 export default function CaseDetailPage({ params }: { params: { id: string } }) {
   const c = cases.find((x) => x.id === params.id);
   if (!c) notFound();
