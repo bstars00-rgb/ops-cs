@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html, body {
+    @apply bg-bg text-fg antialiased;
+    font-feature-settings: "cv11", "ss01", "ss03";
+  }
+  ::selection { background: #1f6feb55; }
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-thumb { background: #2a3340; border-radius: 8px; }
+  ::-webkit-scrollbar-thumb:hover { background: #364152; }
+  ::-webkit-scrollbar-track { background: transparent; }
+}
+
+@layer components {
+  .card {
+    @apply bg-bg-card border border-border rounded-lg;
+  }
+  .card-hover {
+    @apply hover:bg-bg-hover transition-colors;
+  }
+  .badge {
+    @apply inline-flex items-center gap-1 text-xs font-medium px-2 py-0.5 rounded-full border;
+  }
+  .badge-low { @apply text-risk-low border-risk-low/30 bg-risk-low/10; }
+  .badge-med { @apply text-risk-med border-risk-med/30 bg-risk-med/10; }
+  .badge-high { @apply text-risk-high border-risk-high/30 bg-risk-high/10; }
+  .badge-crit { @apply text-risk-crit border-risk-crit/30 bg-risk-crit/10; }
+  .badge-neutral { @apply text-fg-muted border-border bg-bg-soft; }
+  .badge-accent { @apply text-accent border-accent/30 bg-accent-soft; }
+
+  .btn {
+    @apply inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-sm font-medium transition-colors;
+  }
+  .btn-primary {
+    @apply bg-accent text-white hover:bg-accent/90;
+  }
+  .btn-ghost {
+    @apply text-fg-muted hover:text-fg hover:bg-bg-hover;
+  }
+  .btn-soft {
+    @apply bg-bg-soft text-fg border border-border hover:bg-bg-hover;
+  }
+
+  .table-row {
+    @apply border-b border-border-soft hover:bg-bg-hover transition-colors;
+  }
+  .kbd {
+    @apply inline-flex items-center justify-center min-w-[18px] h-[18px] px-1.5 text-[10px] font-mono
+           bg-bg-soft border border-border rounded text-fg-muted;
+  }
+  .nav-item {
+    @apply flex items-center gap-2.5 px-2 py-1.5 rounded-md text-sm text-fg-muted
+           hover:text-fg hover:bg-bg-hover transition-colors;
+  }
+  .nav-item-active {
+    @apply text-fg bg-bg-hover;
+  }
+  .nav-section {
+    @apply text-[10px] font-medium text-fg-subtle uppercase tracking-wider px-2 mt-4 mb-1;
+  }
+  .pulse-dot {
+    @apply relative inline-block w-1.5 h-1.5 rounded-full;
+  }
+  .pulse-dot::before {
+    content: "";
+    @apply absolute inset-0 rounded-full animate-ping;
+    background: currentColor;
+    opacity: 0.5;
+  }
+}
