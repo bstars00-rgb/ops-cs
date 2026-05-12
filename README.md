@@ -18,6 +18,17 @@
 
 **처음 보시는 분은 `docs/PRD.md` 부터** 읽으세요. 빌드 시작은 `docs/SPECIFICATION.md` + `docs/ROADMAP.md` 의 12주 계획 기반.
 
+## 📋 SOP 시스템 (sops/)
+
+VNOP 운영팀의 9개 SOP를 **누구든지 보고/이해하고/편집할 수 있는** Markdown 기반 시스템으로 운영합니다.
+
+- **온라인**: https://bstars00-rgb.github.io/ops-cs/sop — 검색·필터·상세 페이지
+- **편집 가이드**: [`sops/README.md`](./sops/README.md) — 새 SOP 추가, 기존 수정 방법
+- **원본**: `SOP/VNOP_SOP_All_v1.0.docx` (Word, OPS 팀이 작성)
+- **시스템 파일**: `sops/SOP-001.md` ~ `sops/SOP-009.md` (frontmatter + Markdown)
+
+새 SOP 추가는 `.md` 파일 하나 만들어 `git push` 만 하면 자동 배포됩니다 — 개발자 없이 OPS 팀이 직접 운영 가능.
+
 ---
 
 ## 🎯 무엇이 들어있나
